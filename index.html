@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Untitled Document</title>
+    <link rel="stylesheet" href="css/main.css">
+</head>
+
+<body>
+
+    <div>
+        <h1>Search</h1>
+        <div>
+            <h2>search bar</h2>
+
+            <input type="text" id="searchQuery" name="search" />
+            <input type="button" class="testbutton" id="search-submit" value="search" onclick="SearchWiki();" />
+
+        </div>
+        <div>
+            <h2>search results</h2>
+        </div>
+    </div>
+    <h1>List</h1>
+    <div id="lists">
+        <div id="list">
+
+        </div>
+
+        <div id="savedList">
+
+        </div>
+    </div>
+    <div id="debug">
+        HELLO DAVE
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="js/Dexie.js"></script>
+    <script src="js/index.js"></script>
+    <script>
+        SearchWiki();
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,80 @@
+body {
+    background-color: #3E535D;
+    color: white;
+    padding-left: 50px;
+}
+
+input#searchQuery {
+    width: 25%;
+    height: 30px;
+    font-size: 150%;
+    padding-left: 10px;
+}
+
+.item {
+    color: #ffffff;
+    display: -webkit-flex;
+    display: flex;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 30px;
+    padding-right: 30px;
+    background: rgba(255, 255, 255, 0.08);
+    margin: 10px;
+    width: 700px;
+    border-radius: 4px;
+    box-shadow: 1px 1px 1px #BEE2F9;
+    border: 0px solid #44594D;
+}
+
+.description {
+    -webkit-flex: 1;
+    flex: 1;
+    font-size: 20px;
+}
+
+.coverImage {
+    -webkit-flex: 0.5;
+    flex: 0.5;
+}
+
+.addButton {
+    -webkit-flex: 0.5;
+    flex: 0.5;
+    text-align: right;
+}
+
+.testbutton {
+    font-family: arial;
+    font-weight: bold;
+    color: #F2F2F2 !important;
+    font-size: 14px;
+    text-shadow: 1px 1px 0px #42574B;
+    padding: 10px 25px;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    box-shadow: 1px 1px 1px #BEE2F9;
+    border: 3px solid #44594D;
+    background: #516A5C;
+}
+
+.testbutton:hover {
+    color: #FFFFFF !important;
+    background: #678775;
+}
+
+.coverImage img {
+    width: 120px;
+    border: 5px solid #b0c5ff;
+    border-radius: 20px;
+}
+
+a {
+    color: white;
+}
+
+#lists {
+    display: -webkit-flex;
+    display: flex;
+}
