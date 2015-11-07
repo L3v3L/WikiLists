@@ -24,33 +24,32 @@ searchQuery.value = "portogalo";
 
 function SearchWiki() {
     list.innerHTML = "";
-
     q = '&generator=search' +
         '&gsrnamespace=0' +
         '&gsrlimit=20' +
         '&gsrsearch=' + searchQuery.value;
-
-    var arrayObj = getWikiPages(q);
-    for (selector in arrayObj) {
-        $(list).append(' <div class = "item" ><div class="coverImage"><a href=' + selector.fullUrl + ' target="_blank"><img  src = ' + selector.imageSrc + ' alt = "wiki"></a></div><div class="description"><a href=' + selector.fullUrl + ' target="_blank"><h3> ' + selector.title + ' </h3></a> <p> ' + selector.extract + ' </p></div><div class="addButton"><input type="button" class="testbutton" value="save" onclick="saveToData(' + selector.pageId + ',\'' + selector.title + '\')"/></div></div >');
-    }
-
+    getWikiPages(q, displaySearchResults);
 }
 
 function QueryWiki(idList) {
     savedList.innerHTML = "";
-
     q = '&pageids=' + idList;
-    getWikiPages(q);
-
-    var arrayObj = getWikiPages(q);
-    for (selector in arrayObj) {
-        $(savedList).append(' <div class = "item" ><div class="coverImage"><a href=' + selector.fullUrl + ' target="_blank"><img  src = ' + selector.imageSrc + ' alt = "wiki"></a></div><div class="description"><a href=' + selector.fullUrl + ' target="_blank"><h3> ' + selector.title + ' </h3></a> <p> ' + selector.extract + ' </p></div><div class="addButton"><input type="button" class="testbutton" value="remove" onclick="removeFromData(' + selector.pageId + ')"/></div></div >');
-    }
-
+    getWikiPages(q, displaySavedResults);
 }
 
-function getWikiPages(q) {
+function displaySavedResults(arrayObj) {
+    for (i = 0; i < arrayObj.length; i++) {
+        $(savedList).append(' <div class = "item" ><div class="coverImage"><a href=' + arrayObj[i].fullUrl + ' target="_blank"><img  src = ' + arrayObj[i].imageSrc + ' alt = "wiki"></a></div><div class="description"><a href=' + arrayObj[i].fullUrl + ' target="_blank"><h3> ' + arrayObj[i].title + ' </h3></a> <p> ' + arrayObj[i].extract + ' </p></div><div class="addButton"><input type="button" class="testbutton" value="remove" onclick="removeFromData(' + arrayObj[i].pageId + ')"/></div></div >');
+    }
+}
+
+function displaySearchResults(arrayObj) {
+    for (i = 0; i < arrayObj.length; i++) {
+        $(list).append(' <div class = "item" ><div class="coverImage"><a href=' + arrayObj[i].fullUrl + ' target="_blank"><img  src = ' + arrayObj[i].imageSrc + ' alt = "wiki"></a></div><div class="description"><a href=' + arrayObj[i].fullUrl + ' target="_blank"><h3> ' + arrayObj[i].title + ' </h3></a> <p> ' + arrayObj[i].extract + ' </p></div><div class="addButton"><input type="button" class="testbutton" value="save" onclick="saveToData(' + arrayObj[i].pageId + ',\'' + arrayObj[i].title + '\')"/></div></div >');
+    }
+}
+
+function getWikiPages(q, callback) {
     q = 'https://en.wikipedia.org/w/api.php?format=json' +
         '&action=query' +
         '&prop=pageimages|extracts|info' +
@@ -109,9 +108,9 @@ function getWikiPages(q) {
             };
             arrayObjects.push(item);
         }
+        callback(arrayObjects);
     });
 
-    return arrayObjects;
 }
 
 function saveToData(pageid, title) {
