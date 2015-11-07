@@ -21,7 +21,6 @@ input#searchQuery {
     padding-right: 30px;
     background: rgba(255, 255, 255, 0.08);
     margin: 10px;
-    width: 700px;
     border-radius: 4px;
     box-shadow: 1px 1px 1px #BEE2F9;
     border: 0px solid #44594D;
@@ -77,4 +76,10 @@ a {
 #lists {
     display: -webkit-flex;
     display: flex;
+}
+
+.list {
+    width: 45%;
+    background-color: #505a5f;
+    margin-left: 10px;
 }
