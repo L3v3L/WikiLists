@@ -83,3 +83,7 @@ a {
     background-color: #505a5f;
     margin-left: 10px;
 }
+
+.list h2 {
+    text-align: center;
+}
