@@ -39,13 +39,13 @@ function QueryWiki(idList) {
 
 function displaySavedResults(arrayObj) {
     for (i = 0; i < arrayObj.length; i++) {
-        $(savedList).append(' <div class = "item" ><div class="coverImage"><a href=' + arrayObj[i].fullUrl + ' target="_blank"><img  src = ' + arrayObj[i].imageSrc + ' alt = "wiki"></a></div><div class="description"><a href=' + arrayObj[i].fullUrl + ' target="_blank"><h3> ' + arrayObj[i].title + ' </h3></a> <p> ' + arrayObj[i].extract + ' </p></div><div class="addButton"><input type="button" class="testbutton" value="remove" onclick="removeFromData(' + arrayObj[i].pageId + ')"/></div></div >');
+        $(savedList).append(' <div class = "item" ><div class="coverImage"><a href=' + arrayObj[i].fullUrl + ' target="_blank"><img  src = ' + arrayObj[i].imageSrc + ' alt = "wiki"></a></div><div class="description"><a href=' + arrayObj[i].fullUrl + ' target="_blank"><h3> ' + arrayObj[i].title + ' </h3></a> <p> ' + arrayObj[i].extract + ' </p></div><div class="addButton"><input type="button" class="button removeButton" value="remove" onclick="removeFromData(' + arrayObj[i].pageId + ')"/></div></div >');
     }
 }
 
 function displaySearchResults(arrayObj) {
     for (i = 0; i < arrayObj.length; i++) {
-        $(list).append(' <div class = "item" ><div class="coverImage"><a href=' + arrayObj[i].fullUrl + ' target="_blank"><img  src = ' + arrayObj[i].imageSrc + ' alt = "wiki"></a></div><div class="description"><a href=' + arrayObj[i].fullUrl + ' target="_blank"><h3> ' + arrayObj[i].title + ' </h3></a> <p> ' + arrayObj[i].extract + ' </p></div><div class="addButton"><input type="button" class="testbutton" value="save" onclick="saveToData(' + arrayObj[i].pageId + ',\'' + arrayObj[i].title + '\')"/></div></div >');
+        $(list).append(' <div class = "item" ><div class="coverImage"><a href=' + arrayObj[i].fullUrl + ' target="_blank"><img  src = ' + arrayObj[i].imageSrc + ' alt = "wiki"></a></div><div class="description"><a href=' + arrayObj[i].fullUrl + ' target="_blank"><h3> ' + arrayObj[i].title + ' </h3></a> <p> ' + arrayObj[i].extract + ' </p></div><div class="addButton"><input type="button" class="button saveButton" value="save" onclick="saveToData(' + arrayObj[i].pageId + ',\'' + arrayObj[i].title + '\')"/></div></div >');
     }
 }
 

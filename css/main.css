@@ -66,7 +66,7 @@ body {
     text-align: right;
 }
 
-.testbutton {
+.button {
     font-family: arial;
     font-weight: bold;
     color: #F2F2F2 !important;
@@ -81,9 +81,21 @@ body {
     background: #516A5C;
 }
 
-.testbutton:hover {
+.button:hover {
     color: #FFFFFF !important;
     background: #678775;
+}
+
+.saveButton {}
+
+.removeButton {
+    background: #8e3939;
+    border: 3px solid #951e1e;
+}
+
+.removeButton:hover {
+    color: #FFFFFF !important;
+    background: #a86464;
 }
 
 .coverImage img {
