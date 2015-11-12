@@ -81,6 +81,11 @@ body {
     background: #516A5C;
 }
 
+#savedToolBar h2{
+    display: inline-block;
+    width: 80%;
+}
+
 .button:hover {
     color: #FFFFFF !important;
     background: #678775;
