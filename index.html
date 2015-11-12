@@ -24,9 +24,10 @@
             </div>
         </div>
         <div class="list">
-           <div id="savedToolBar">
-            <h2>Saved</h2>
-            <input type="button" class="button" value="change List" onclick="changeList();" />
+            <div id="savedToolBar">
+                <h2>Saved</h2>
+                <input type="button" class="button" value="change list" onclick="$('#listChooser').show();" />
+                <input type="button" class="button" value="share" onclick="" />
             </div>
             <div id="savedList">
 
@@ -35,6 +36,13 @@
     </div>
     <div id="debug">
         HELLO DAVE
+    </div>
+
+    <div id="listChooser">
+        <li>banana</li>
+        <li>apple</li>
+        <li>orange</li>
+        <input type="button" class="button" value="cancel" onclick="$('#listChooser').hide();" />
     </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>

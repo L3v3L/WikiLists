@@ -49,10 +49,6 @@ function displaySearchResults(arrayObj) {
     }
 }
 
-function changeList() {
-    alert("SHOW LIST MENU");
-}
-
 function getWikiPages(q, callback) {
     q = 'https://en.wikipedia.org/w/api.php?format=json' +
         '&action=query' +
