@@ -1,18 +1,23 @@
 var list = document.getElementById("list");
 var savedList = document.getElementById("savedList");
 var searchQuery = document.getElementById("searchQuery");
+var listNameChange = document.getElementById("listNameChange");
 var debug = document.getElementById("debug");
 debug.innerHTML = "";
+
+listSelected = "General";
+
+$("#listTitle").text(listSelected);
 
 //create new database
 var db = new Dexie("wikiLists");
 
 db.version(1).stores({
-    wikis: '_id, _name'
+    wikis: '_id, _name, _list'
 });
 
 db.open()
-    .then(refreshView);
+    .then(refreshView(listSelected));
 
 searchQuery.onkeypress = function (e) {
     if (e.keyCode == 13) {
@@ -45,7 +50,7 @@ function displaySavedResults(arrayObj) {
 
 function displaySearchResults(arrayObj) {
     for (i = 0; i < arrayObj.length; i++) {
-        $(list).append(' <div class = "item" ><div class="coverImage"><a href=' + arrayObj[i].fullUrl + ' target="_blank"><img  src = ' + arrayObj[i].imageSrc + ' alt = "wiki"></a></div><div class="description"><a href=' + arrayObj[i].fullUrl + ' target="_blank"><h3> ' + arrayObj[i].title + ' </h3></a> <p> ' + arrayObj[i].extract + ' </p></div><div class="addButton"><input type="button" class="button saveButton" value="save" onclick="saveToData(' + arrayObj[i].pageId + ',\'' + arrayObj[i].title + '\')"/></div></div >');
+        $(list).append(' <div class = "item" ><div class="coverImage"><a href=' + arrayObj[i].fullUrl + ' target="_blank"><img  src = ' + arrayObj[i].imageSrc + ' alt = "wiki"></a></div><div class="description"><a href=' + arrayObj[i].fullUrl + ' target="_blank"><h3> ' + arrayObj[i].title + ' </h3></a> <p> ' + arrayObj[i].extract + ' </p></div><div class="addButton"><input type="button" class="button saveButton" value="save" onclick="saveToData(' + arrayObj[i].pageId + ',\'' + arrayObj[i].title + '\',\''+listSelected+'\')"/></div></div >');
     }
 }
 
@@ -113,16 +118,17 @@ function getWikiPages(q, callback) {
 
 }
 
-function saveToData(pageid, title) {
+function saveToData(pageid, title, listName) {
     db.wikis.put({
             _id: pageid,
-            _name: title
+            _name: title,
+            _list: listName
         })
-        .then(refreshView);
+        .then(refreshView(listName));
 }
 
-function refreshView() {
-    return db.wikis.toArray()
+function refreshView(listName) {
+    return db.wikis.where('_list').equals(listName).toArray()
         .then(renderAllWiki);
 }
 
@@ -143,5 +149,12 @@ function renderAllWiki(wikiIds) {
 
 function removeFromData(pageid) {
     db.wikis.where('_id').equals(pageid).delete()
-        .then(refreshView);
+        .then(refreshView(listSelected));
+}
+
+function changeList(){
+    $('#listChooser').hide();
+    listSelected = listNameChange.value;
+    $("#listTitle").text(listSelected);
+    refreshView(listNameChange.value);
 }
