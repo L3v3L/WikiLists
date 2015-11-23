@@ -5,7 +5,7 @@ var listNameChange = document.getElementById("listNameChange");
 var debug = document.getElementById("debug");
 debug.innerHTML = "";
 
-listSelected = "General";
+listSelected = "general";
 
 $("#listTitle").text(listSelected);
 
@@ -50,7 +50,7 @@ function displaySavedResults(arrayObj) {
 
 function displaySearchResults(arrayObj) {
     for (i = 0; i < arrayObj.length; i++) {
-        $(list).append(' <div class = "item" ><div class="coverImage"><a href=' + arrayObj[i].fullUrl + ' target="_blank"><img  src = ' + arrayObj[i].imageSrc + ' alt = "wiki"></a></div><div class="description"><a href=' + arrayObj[i].fullUrl + ' target="_blank"><h3> ' + arrayObj[i].title + ' </h3></a> <p> ' + arrayObj[i].extract + ' </p></div><div class="addButton"><input type="button" class="button saveButton" value="save" onclick="saveToData(' + arrayObj[i].pageId + ',\'' + arrayObj[i].title + '\',\''+listSelected+'\')"/></div></div >');
+        $(list).append(' <div class = "item" ><div class="coverImage"><a href=' + arrayObj[i].fullUrl + ' target="_blank"><img  src = ' + arrayObj[i].imageSrc + ' alt = "wiki"></a></div><div class="description"><a href=' + arrayObj[i].fullUrl + ' target="_blank"><h3> ' + arrayObj[i].title + ' </h3></a> <p> ' + arrayObj[i].extract + ' </p></div><div class="addButton"><input type="button" class="button saveButton" value="save" onclick="saveToData(' + arrayObj[i].pageId + ',\'' + arrayObj[i].title + '\')"/></div></div >');
     }
 }
 
@@ -118,13 +118,14 @@ function getWikiPages(q, callback) {
 
 }
 
-function saveToData(pageid, title, listName) {
+function saveToData(pageid, title) {
+    
     db.wikis.put({
             _id: pageid,
             _name: title,
-            _list: listName
+            _list: listSelected
         })
-        .then(refreshView(listName));
+        .then(refreshView(listSelected));
 }
 
 function refreshView(listName) {
