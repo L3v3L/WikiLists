@@ -26,7 +26,7 @@
         <div class="list">
             <div id="savedToolBar">
                 <h2 id="listTitle">Saved</h2>
-                <input type="button" class="button" value="change list" onclick="$('#listChooser').show();" />
+                <input type="button" class="button" value="change list" onclick="listChooser();" />
                 <input type="button" class="button" value="share" onclick="" />
             </div>
             <div id="savedList">
@@ -39,9 +39,8 @@
     </div>
 
     <div id="listChooser">
-        <li>banana</li>
-        <li>apple</li>
-        <li>orange</li>
+        <div id="listChooserShortCuts">
+        </div>
         <input type="text" id="listNameChange" name="listNameChange" />
         <input type="button" class="button" value="ok" onclick="changeList();" />
         <input type="button" class="button" value="cancel" onclick="$('#listChooser').hide();" />

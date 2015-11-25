@@ -13,7 +13,8 @@ $("#listTitle").text(listSelected);
 var db = new Dexie("wikiLists");
 
 db.version(1).stores({
-    wikis: '_id, _name, _list'
+    wikis: '&id, &name',
+    wikiInList: '++id,wikiId,listName,&[wikiId+listName]'
 });
 
 db.open()
@@ -119,17 +120,21 @@ function getWikiPages(q, callback) {
 }
 
 function saveToData(pageid, title) {
-    
     db.wikis.put({
-            _id: pageid,
-            _name: title,
-            _list: listSelected
+            id: pageid,
+            name: title,
         })
+        .then(
+            db.wikiInList.put({
+                wikiId: pageid,
+                listName: listSelected,
+            })
+        )
         .then(refreshView(listSelected));
 }
 
 function refreshView(listName) {
-    return db.wikis.where('_list').equals(listName).toArray()
+    return db.wikiInList.where('listName').equals(listName).toArray()
         .then(renderAllWiki);
 }
 
@@ -137,7 +142,7 @@ function renderAllWiki(wikiIds) {
     debug.innerHTML = "";
     iquery = "";
     wikiIds.forEach(function (wiki) {
-        iquery += wiki._id + "|";
+        iquery += wiki.wikiId + "|";
     });
 
     if (iquery != "") {
@@ -149,13 +154,41 @@ function renderAllWiki(wikiIds) {
 }
 
 function removeFromData(pageid) {
-    db.wikis.where('_id').equals(pageid).delete()
+    db.wikiInList.where('[wikiId+listName]').equals([pageid, listSelected]).delete()
         .then(refreshView(listSelected));
 }
 
-function changeList(){
+function changeList() {
     $('#listChooser').hide();
     listSelected = listNameChange.value;
     $("#listTitle").text(listSelected);
     refreshView(listNameChange.value);
+}
+
+function changeListButton(nameOfList) {
+    $('#listChooser').hide();
+    listSelected = nameOfList;
+    $("#listTitle").text(listSelected);
+    refreshView(nameOfList);
+}
+
+
+function getAllLists(outPutFunction) {
+    db.wikiInList.orderBy('listName').uniqueKeys(function (listNameArray) {
+        outPutFunction(listNameArray);
+    });
+}
+
+
+function listChooser() {
+    $('#listChooserShortCuts').html("");
+    getAllLists(drawLists);
+    $('#listChooser').show();
+}
+
+function drawLists(arrayOfLists) {
+    $('#listChooserShortCuts').html("");
+    arrayOfLists.forEach(function (list) {
+        $('#listChooserShortCuts').append('<input type="button" class="button" value="' + list + '" onclick="changeListButton(\'' + list + '\');" /><br><br>');
+    });
 }
