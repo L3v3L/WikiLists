@@ -30,12 +30,12 @@ searchQuery.value = "portogalo";
 
 function SearchWiki() {
     list.innerHTML = "";
-    
+
     searchQuery.value = searchQuery.value.toLowerCase();
-    if(searchQuery.value.split(' ').length == 1){
-        searchQuery.value = searchQuery.value.replace(/.*wikipedia.org\/wiki\//,"");
+    if (searchQuery.value.split(' ').length == 1) {
+        searchQuery.value = searchQuery.value.replace(/.*wikipedia.org\/wiki\//, "");
     }
-    
+
     q = '&generator=search' +
         '&gsrnamespace=0' +
         '&gsrlimit=20' +
@@ -56,9 +56,17 @@ function displaySavedResults(arrayObj) {
 }
 
 function displaySearchResults(arrayObj) {
-    for (i = 0; i < arrayObj.length; i++) {
-        $(list).append(' <div class = "item" ><div class="coverImage"><a href=' + arrayObj[i].fullUrl + ' target="_blank"><img  src = ' + arrayObj[i].imageSrc + ' alt = "wiki"></a></div><div class="description"><a href=' + arrayObj[i].fullUrl + ' target="_blank"><h3> ' + arrayObj[i].title + ' </h3></a> <p> ' + arrayObj[i].extract + ' </p></div><div class="addButton"><input type="button" class="button saveButton" value="save" onclick="saveToData(' + arrayObj[i].pageId + ',\'' + arrayObj[i].title + '\')"/></div></div >');
-    }
+ 
+    $.get('js/templates/item.html', function (source) {
+        var template=Handlebars.compile(source);
+        for (i = 0; i < arrayObj.length; i++) {
+            $(list).append(template(arrayObj[i]));
+        }
+    }, 'html')
+    
+
+
+    
 }
 
 function getWikiPages(q, callback) {
@@ -109,7 +117,7 @@ function getWikiPages(q, callback) {
             } catch (err) {
                 var pageId = "";
             }
-            
+
             var item = {
                 imageSrc: imageSrc,
                 thumbSrc: thumbSrc,
@@ -117,11 +125,11 @@ function getWikiPages(q, callback) {
                 extract: extract,
                 fullUrl: fullUrl,
                 pageId: pageId,
-                rank:  s.levenshtein(searchQuery.value, title)
+                rank: s.levenshtein(searchQuery.value, title)
             };
             arrayObjects.push(item);
         }
-        arrayObjects = _.sortBy( arrayObjects, 'rank' );
+        arrayObjects = _.sortBy(arrayObjects, 'rank');
         callback(arrayObjects);
     });
 
@@ -180,13 +188,11 @@ function changeListButton(nameOfList) {
     refreshView(nameOfList);
 }
 
-
 function getAllLists(outPutFunction) {
     db.wikiInList.orderBy('listName').uniqueKeys(function (listNameArray) {
         outPutFunction(listNameArray);
     });
 }
-
 
 function listChooser() {
     $('#listChooserShortCuts').html("");
