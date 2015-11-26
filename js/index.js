@@ -75,19 +75,24 @@ function displaySearchResults(arrayObj) {
 }
 
 function getWikiPages(q, callback) {
-    q = 'https://en.wikipedia.org/w/api.php?format=json' +
-        '&action=query' +
-        '&prop=pageimages|extracts|info' +
-        '&inprop=url' +
-        '&callback=?' +
-        '&pilimit=max' +
-        '&exintro' +
-        '&explaintext' +
-        '&exsentences=1' +
-        '&exlimit=max' +
-        '&piprop=original|thumbnail' +
-        q;
+    
+    var baseUrl = 'https://en.wikipedia.org/w/api.php?';
+    var params = $.param({
+        format:'json',
+        action:'query',
+        prop:'pageimages|extracts|info',
+        inprop:'url',
+        pilimit:'max',
+        exintro: true,
+        explaintext: true,
+        exsentences: 1,
+        exlimit:'max',
+        piprop:'original|thumbnail'
+    });
+    
+    q = baseUrl + params + q + "&callback=?";
 
+    
     var arrayObjects = [];
     $.getJSON(q, function (data) {
         var pages = data["query"]["pages"];
@@ -138,6 +143,57 @@ function getWikiPages(q, callback) {
         callback(arrayObjects);
     });
 
+}
+
+
+function getWikiPagesRelated(q, callback) {
+    
+    var baseUrl = 'https://en.wikipedia.org/w/api.php?';
+    var params = $.param({
+        format:'json',
+        action:'query',
+        prop:'linkshere',
+        lhprop: 'pageid',
+        lhnamespace: 0,
+        titles: q
+    });
+    
+    q = baseUrl + params + "&callback=?";
+    console.log(q);
+    
+    var arrayObjects = [];
+    $.getJSON(q, function (data) {
+        var pages = data["query"]["pages"];
+        
+        idList = "";
+        for (selectorPai in pages) 
+            for (selector in pages[selectorPai]["linkshere"]) {
+                try {
+                    var pageId = JSON.stringify(pages[selectorPai]["linkshere"][selector]["pageid"]).replace(/\"/g, "");
+                } catch (err) {
+                    var pageId = "BANANA";
+                }
+                 idList = idList + pageId + "|";
+                 console.log(pageId);
+            }
+        if (idList != "") {
+            idList = idList.slice(0, -1);
+            callback(idList);
+        }
+    });
+
+}
+
+function QueryWikiRelated(idList) {
+    list.innerHTML = "";
+    q = '&pageids=' + idList;
+    getWikiPages(q, displaySearchResults);
+}
+
+
+
+function enhace(titleToEnhace){
+    getWikiPagesRelated(titleToEnhace, QueryWikiRelated);
 }
 
 function saveToData(pageid, title) {
