@@ -50,23 +50,28 @@ function QueryWiki(idList) {
 }
 
 function displaySavedResults(arrayObj) {
-    for (i = 0; i < arrayObj.length; i++) {
-        $(savedList).append(' <div class = "item" ><div class="coverImage"><a href=' + arrayObj[i].fullUrl + ' target="_blank"><img  src = ' + arrayObj[i].imageSrc + ' alt = "wiki"></a></div><div class="description"><a href=' + arrayObj[i].fullUrl + ' target="_blank"><h3> ' + arrayObj[i].title + ' </h3></a> <p> ' + arrayObj[i].extract + ' </p></div><div class="addButton"><input type="button" class="button removeButton" value="remove" onclick="removeFromData(' + arrayObj[i].pageId + ')"/></div></div >');
-    }
+
+    $.get('js/templates/item.html', function (source) {
+        var template = Handlebars.compile(source);
+        var templateData = {
+            items: arrayObj,
+            save: false,
+            remove: true
+        };
+        $(savedList).append(template(templateData));
+    }, 'html')
 }
 
 function displaySearchResults(arrayObj) {
- 
     $.get('js/templates/item.html', function (source) {
-        var template=Handlebars.compile(source);
-        for (i = 0; i < arrayObj.length; i++) {
-            $(list).append(template(arrayObj[i]));
-        }
+        var template = Handlebars.compile(source);
+        var templateData = {
+            items: arrayObj,
+            save: true,
+            remove: false
+        };
+        $(list).append(template(templateData));
     }, 'html')
-    
-
-
-    
 }
 
 function getWikiPages(q, callback) {
