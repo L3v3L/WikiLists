@@ -2,22 +2,26 @@
 <div class="item">
     <div class="coverImage">
         <a href="{{fullUrl}}" target="_blank"><img src="{{imageSrc}}" alt="wiki"></a>
+        <input type="button" class="button" value="Parents" onclick="enhace('{{title}}')"/>
+        <input type="button" class="button" value="Children" onclick=""/>
     </div>
     <div class="description">
         <a href="{{fullUrl}}" target="_blank">
             <h3>{{title}}</h3>
             
         </a>
-        <input type="button" class="" value="enhace" onclick="enhace('{{title}}')"/>
+        
         <p>{{extract}}</p>
     </div>
     <div class="addButton">
         {{#if ../save}}
         <input type="button" class="button saveButton" value="save" onclick="saveToData({{pageId}},'{{title}}')" />
+        <input type="button" class="button saveButton" value="save to.." onclick="" />
         {{/if}}
         
         {{#if ../remove}}
         <input type="button" class="button removeButton" value="remove" onclick="removeFromData({{pageId}})"/>
+        <input type="button" class="button" value="note" onclick=""/>
         {{/if}}
     </div>
 </div>
