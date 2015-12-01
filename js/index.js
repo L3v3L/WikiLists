@@ -91,7 +91,8 @@ function getWikiPages(q, callback) {
     });
     
     q = baseUrl + params + q + "&callback=?";
-
+    
+    console.log(q);
     
     var arrayObjects = [];
     $.getJSON(q, function (data) {
@@ -127,6 +128,11 @@ function getWikiPages(q, callback) {
             } catch (err) {
                 var pageId = "";
             }
+             try {
+                var index = JSON.stringify(pages[selector]["index"]).replace(/\"/g, "");
+            } catch (err) {
+                var index = "1000";
+            }
 
             var item = {
                 imageSrc: imageSrc,
@@ -135,16 +141,16 @@ function getWikiPages(q, callback) {
                 extract: extract,
                 fullUrl: fullUrl,
                 pageId: pageId,
-                rank: s.levenshtein(searchQuery.value, title)
+                rank: s.levenshtein(searchQuery.value, title),
+                index: parseInt(index)
             };
             arrayObjects.push(item);
         }
-        arrayObjects = _.sortBy(arrayObjects, 'rank');
+        arrayObjects = _.sortBy(arrayObjects, 'index');
         callback(arrayObjects);
     });
 
 }
-
 
 function getWikiPagesRelated(q, callback) {
     
@@ -153,13 +159,15 @@ function getWikiPagesRelated(q, callback) {
         format:'json',
         action:'query',
         prop:'linkshere',
+        lhlimit:'max',
+        lhshow: '!redirect',
         lhprop: 'pageid',
         lhnamespace: 0,
         titles: q
     });
     
     q = baseUrl + params + "&callback=?";
-    console.log(q);
+    
     
     var arrayObjects = [];
     $.getJSON(q, function (data) {
@@ -189,8 +197,6 @@ function QueryWikiRelated(idList) {
     q = '&pageids=' + idList;
     getWikiPages(q, displaySearchResults);
 }
-
-
 
 function enhace(titleToEnhace){
     getWikiPagesRelated(titleToEnhace, QueryWikiRelated);
