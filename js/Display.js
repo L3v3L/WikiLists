@@ -28,7 +28,6 @@ function refreshView(listName) {
         .then(renderAllWiki);
 }
 
-
 function renderAllWiki(wikiIds) {
     debug.innerHTML = "";
     iquery = "";
@@ -49,4 +48,10 @@ function drawLists(arrayOfLists) {
     arrayOfLists.forEach(function (list) {
         $('#listChooserShortCuts').append('<input type="button" class="button" value="' + list + '" onclick="changeListButton(\'' + list + '\');" /><br><br>');
     });
+}
+
+function listChooser() {
+    $('#listChooserShortCuts').html("");
+    getAllLists(drawLists);
+    $('#listChooser').show();
 }
