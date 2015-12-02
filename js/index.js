@@ -28,12 +28,17 @@ db.open()
     .then(refreshView(listSelected));
 
 
-//Searches for parent wikis
+/**
+ * Searches for parent wikis
+ * @param {String} titleToEnhace - Title wiki to search where mentioned
+ */
 function enhace(titleToEnhace){
     getWikiPagesRelated(titleToEnhace, QueryWikiRelated);
 }
 
-//Change the list currently being viewed to listNameChange.value
+/**
+ * Change the list currently being viewed to listNameChange.value
+ */
 function changeList() {
     $('#listChooser').hide();
     listSelected = listNameChange.value;
@@ -41,7 +46,10 @@ function changeList() {
     refreshView(listNameChange.value);
 }
 
-//Change the list currently being viewed to input
+/**
+ * Change the list currently being viewed to input
+ * @param {String} nameOfList - name of list to change to
+ */
 function changeListButton(nameOfList) {
     $('#listChooser').hide();
     listSelected = nameOfList;
