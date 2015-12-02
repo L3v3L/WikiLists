@@ -2,8 +2,16 @@
 <div class="item">
     <div class="coverImage">
         <a href="{{fullUrl}}" target="_blank"><img src="{{imageSrc}}" alt="wiki"></a>
-        <input type="button" class="button" value="Parents" onclick="enhace('{{title}}')"/>
-        <input type="button" class="button" value="Children" onclick=""/>
+        
+        
+        <br>
+        <button type="button" class="btn btn-primary" aria-label="Left Align" onclick="enhace('{{title}}')">
+          <span class="glyphicon glyphicon-upload" aria-hidden="true"></span>
+        </button>
+        <button type="button" class="btn btn-primary" aria-label="Left Align" onclick="">
+          <span class="glyphicon glyphicon-download" aria-hidden="true"></span>
+        </button>
+        
     </div>
     <div class="description">
         <a href="{{fullUrl}}" target="_blank">
@@ -13,13 +21,26 @@
     </div>
     <div class="addButton">
         {{#if ../save}}
-        <input type="button" class="button saveButton" value="save" onclick="saveToData({{pageId}},'{{title}}')" />
-        <input type="button" class="button saveButton" value="save to.." onclick="" />
+      
+        <button type="button" class="btn btn-success" aria-label="Left Align" onclick="saveToData({{pageId}},'{{title}}')">
+          <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+        </button>
+        
+        
+        <button type="button" class="btn btn-success" aria-label="Left Align" onclick="">
+          <span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span>
+        </button>
+        
         {{/if}}
         
         {{#if ../remove}}
-        <input type="button" class="button removeButton" value="remove" onclick="removeFromData({{pageId}})"/>
-        <input type="button" class="button" value="note" onclick=""/>
+        <button type="button" class="btn btn-danger" aria-label="Left Align" onclick="removeFromData({{pageId}})">
+          <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+        </button>
+        
+        <button type="button" class="btn btn-primary" aria-label="Left Align" onclick="">
+          <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+        </button>
         {{/if}}
     </div>
 </div>

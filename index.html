@@ -4,6 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <title>WikiLists</title>
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/main.css">
 </head>
 
@@ -13,7 +16,9 @@
 
         <div id="searchBar">
             <input type="text" id="searchQuery" name="search" />
-            <input type="button" id="search-submit" value="search" onclick="SearchWiki();" />
+            <button type="button" class="btn btn-primary" aria-label="Left Align" onclick="SearchWiki();">
+                <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+            </button>
         </div>
     </div>
     <div id="lists">
@@ -26,8 +31,14 @@
         <div class="list">
             <div id="savedToolBar">
                 <h2 id="listTitle">Saved</h2>
-                <input type="button" class="button" value="change list" onclick="listChooser();" />
-                <input type="button" class="button" value="share" onclick="" />
+
+                <button type="button" class="btn btn-primary" aria-label="Left Align" onclick="listChooser();">
+                    <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
+                </button>
+                <button type="button" class="btn btn-primary" aria-label="Left Align" onclick="">
+                    <span class="glyphicon glyphicon-share" aria-hidden="true"></span>
+                </button>
+
             </div>
             <div id="savedList">
 
@@ -41,10 +52,16 @@
         <div id="listChooserShortCuts">
         </div>
         <input type="text" id="listNameChange" name="listNameChange" />
-        <input type="button" class="button" value="ok" onclick="changeList();" />
-        <input type="button" class="button" value="cancel" onclick="$('#listChooser').hide();" />
+
+        <button type="button" class="btn btn-success" aria-label="Left Align" onclick="changeList();">
+            <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+        </button>
+        
+        <button type="button" class="btn btn-danger" aria-label="Left Align" onclick="$('#listChooser').hide();">
+            <span class="fa fa-ban" aria-hidden="true"></span>
+        </button>
     </div>
-    
+
     <script src="js/WikiWrapper.js"></script>
     <script src="js/DatabaseAPI.js"></script>
     <script src="js/Display.js"></script>
@@ -54,7 +71,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
     <script src="js/Dexie.js"></script>
     <script src="js/index.js"></script>
-    
+
     <script>
         SearchWiki();
     </script>
