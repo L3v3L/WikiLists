@@ -1,7 +1,11 @@
+/**
+ * Main search from search bar
+ */
 function SearchWiki() {
     list.innerHTML = "";
 
     searchQuery.value = searchQuery.value.toLowerCase();
+    //if url in search bar, then parse
     if (searchQuery.value.split(' ').length == 1) {
         searchQuery.value = searchQuery.value.replace(/.*wikipedia.org\/wiki\//, "");
     }
@@ -13,12 +17,21 @@ function SearchWiki() {
     getWikiPages(q, displaySearchResults);
 }
 
+/**
+ * Prepare for simple search
+ * @param {String} idList - Title of wikipedia page to search
+ */
 function QueryWiki(idList) {
     savedList.innerHTML = "";
     q = '&pageids=' + idList;
     getWikiPages(q, displaySavedResults);
 }
 
+/**
+ * searches wikipedia for query
+ * @param {String} q        - query to search wikipedia for
+ * @param {Function} callback - function to run after, should take an array of wikipedia objects
+ */
 function getWikiPages(q, callback) {
     
     var baseUrl = 'https://en.wikipedia.org/w/api.php?';
@@ -97,6 +110,11 @@ function getWikiPages(q, callback) {
 
 }
 
+/**
+ * searches wikipedia for where a certain page is mentioned
+ * @param {String} q        - title of page to search mentions
+ * @param {Function} callback - function to call when finished, should accept array of wikipedia objects
+ */
 function getWikiPagesRelated(q, callback) {
     
     var baseUrl = 'https://en.wikipedia.org/w/api.php?';
@@ -137,6 +155,10 @@ function getWikiPagesRelated(q, callback) {
 
 }
 
+/**
+ * Prepare for searching where mentioned
+ * @param {String} idList - Title of wikipedia page to search mentions
+ */
 function QueryWikiRelated(idList) {
     list.innerHTML = "";
     q = '&pageids=' + idList;
