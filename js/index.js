@@ -41,9 +41,10 @@ function enhace(titleToEnhace){
  */
 function changeList() {
     $('#listChooser').hide();
-    listSelected = listNameChange.value;
-    listSelected = s.capitalize(listSelected, true);
-    $("#listTitle").text(listSelected);
+    listSelected = s.capitalize(listNameChange.value, true);
+    //cancel if trying to change to currently viewed list
+    if(listSelected === $("#listTitle").text())
+        return;
     refreshView(listSelected);
 }
 
@@ -53,9 +54,10 @@ function changeList() {
  */
 function changeListButton(nameOfList) {
     $('#listChooser').hide();
-    listSelected = nameOfList;
-    listSelected = s.capitalize(listSelected, true);
-    $("#listTitle").text(listSelected);
+    listSelected = s.capitalize(nameOfList, true);
+    //cancel if trying to change to currently viewed list
+    if(listSelected === $("#listTitle").text())
+        return;
     refreshView(listSelected);
 }
 
