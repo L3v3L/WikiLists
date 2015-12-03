@@ -1,3 +1,7 @@
+/**
+ * Displays list on Saved Results
+ * @param {Object Array} arrayObj - Array of wikipedia json objects
+ */
 function displaySavedResults(arrayObj) {
 
     $.get('js/templates/item.html', function (source) {
@@ -11,6 +15,10 @@ function displaySavedResults(arrayObj) {
     }, 'html')
 }
 
+/**
+ * Displays list on Searched Results
+ * @param {Object Array} arrayObj - Array of wikipedia json objects
+ */
 function displaySearchResults(arrayObj) {
     $.get('js/templates/item.html', function (source) {
         var template = Handlebars.compile(source);
@@ -23,11 +31,20 @@ function displaySearchResults(arrayObj) {
     }, 'html')
 }
 
+/**
+ * [[Description]]
+ * @param   {String} listName - name of the List to refresh
+ * @returns {Object Array} - items stored in certain list on local machine
+ */
 function refreshView(listName) {
     return db.wikiInList.where('listName').equals(listName).toArray()
         .then(renderAllWiki);
 }
 
+/**
+ * creates a multi query with wiki IDs and fecthes them
+ * @param {String Array} wikiIds - array of wiki IDs
+ */
 function renderAllWiki(wikiIds) {
     debug.innerHTML = "";
     iquery = "";
@@ -43,6 +60,10 @@ function renderAllWiki(wikiIds) {
     }
 }
 
+/**
+ * draw buttons in list chooser
+ * @param {String Array} arrayOfLists - array of lists
+ */
 function drawLists(arrayOfLists) {
     $('#listChooserShortCuts').html("");
     arrayOfLists.forEach(function (list) {
@@ -50,6 +71,9 @@ function drawLists(arrayOfLists) {
     });
 }
 
+/**
+ * Show list chooser
+ */
 function listChooser() {
     $('#listChooserShortCuts').html("");
     getAllLists(drawLists);
