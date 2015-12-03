@@ -36,7 +36,9 @@ body {
     color: black;
 }
 
-
+#listNameChange{
+    color: black;
+}
 .item {
     color: #ffffff;
     display: -webkit-flex;

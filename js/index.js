@@ -8,7 +8,7 @@ var debug = document.getElementById("debug");
 //set default state
 debug.innerHTML = "";
 searchQuery.value = "portogalo";
-listSelected = "general";
+listSelected = "General";
 $("#listTitle").text(listSelected);
 
 //set enter key to search
@@ -42,8 +42,9 @@ function enhace(titleToEnhace){
 function changeList() {
     $('#listChooser').hide();
     listSelected = listNameChange.value;
+    listSelected = s.capitalize(listSelected, true);
     $("#listTitle").text(listSelected);
-    refreshView(listNameChange.value);
+    refreshView(listSelected);
 }
 
 /**
@@ -53,8 +54,9 @@ function changeList() {
 function changeListButton(nameOfList) {
     $('#listChooser').hide();
     listSelected = nameOfList;
+    listSelected = s.capitalize(listSelected, true);
     $("#listTitle").text(listSelected);
-    refreshView(nameOfList);
+    refreshView(listSelected);
 }
 
 

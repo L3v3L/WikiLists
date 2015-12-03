@@ -37,7 +37,7 @@ function displaySearchResults(arrayObj) {
  * @returns {Object Array} - items stored in certain list on local machine
  */
 function refreshView(listName) {
-    return db.wikiInList.where('listName').equals(listName).toArray()
+    return db.wikiInList.where('listName').equalsIgnoreCase(listName).toArray()
         .then(renderAllWiki);
 }
 
