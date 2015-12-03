@@ -2,16 +2,15 @@
 <div class="item">
     <div class="coverImage">
         <a href="{{fullUrl}}" target="_blank"><img src="{{imageSrc}}" alt="wiki"></a>
-        
-        
         <br>
-        <button type="button" class="btn btn-primary" aria-label="Left Align" onclick="enhace('{{title}}')">
-          <span class="glyphicon glyphicon-upload" aria-hidden="true"></span>
-        </button>
-        <button type="button" class="btn btn-primary" aria-label="Left Align" onclick="">
-          <span class="glyphicon glyphicon-download" aria-hidden="true"></span>
-        </button>
-        
+        <div class="coverImageButtons">
+            <button type="button" class="btn btn-primary" aria-label="Left Align" onclick="enhace('{{title}}')">
+                <span class="glyphicon glyphicon-upload" aria-hidden="true"></span>
+            </button>
+            <button type="button" class="btn btn-primary" aria-label="Left Align" onclick="">
+                <span class="glyphicon glyphicon-download" aria-hidden="true"></span>
+            </button>
+        </div>
     </div>
     <div class="description">
         <a href="{{fullUrl}}" target="_blank">
@@ -21,25 +20,23 @@
     </div>
     <div class="addButton">
         {{#if ../save}}
-      
+
         <button type="button" class="btn btn-success" aria-label="Left Align" onclick="saveToData({{pageId}},'{{title}}')">
-          <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
         </button>
-        
-        
+
+
         <button type="button" class="btn btn-success" aria-label="Left Align" onclick="">
-          <span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span>
+            <span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span>
         </button>
-        
-        {{/if}}
-        
-        {{#if ../remove}}
+
+        {{/if}} {{#if ../remove}}
         <button type="button" class="btn btn-danger" aria-label="Left Align" onclick="removeFromData({{pageId}})">
-          <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
         </button>
-        
+
         <button type="button" class="btn btn-primary" aria-label="Left Align" onclick="">
-          <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+            <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
         </button>
         {{/if}}
     </div>
