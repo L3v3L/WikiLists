@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>WikiLists</title>
-    
+
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/main.css">
@@ -23,8 +23,8 @@
     </div>
     <div id="lists">
         <div class="list">
-           <div class="listToolBar">
-            <h2>Results</h2>
+            <div class="listToolBar">
+                <h2>Results</h2>
             </div>
             <div id="list">
 
@@ -34,13 +34,13 @@
             <div class="listToolBar">
                 <h2 id="listTitle">Saved</h2>
                 <div class="listToolBarButtons">
-                <button type="button" class="btn btn-primary" aria-label="Left Align" onclick="listChooser();">
-                    <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
-                </button>
-                <button type="button" class="btn btn-primary" aria-label="Left Align" onclick="">
-                    <span class="glyphicon glyphicon-share" aria-hidden="true"></span>
-                </button>
-</div>
+                    <button type="button" class="btn btn-primary" aria-label="Left Align" onclick="listChooser();">
+                        <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
+                    </button>
+                    <button type="button" class="btn btn-primary" aria-label="Left Align" onclick="">
+                        <span class="glyphicon glyphicon-share" aria-hidden="true"></span>
+                    </button>
+                </div>
             </div>
             <div id="savedList">
 
@@ -50,7 +50,7 @@
     <div id="debug">
     </div>
 
-    <div id="listChooser">
+    <div id="listChooser" style="display:none">
         <div id="listChooserShortCuts">
         </div>
         <input type="text" id="listNameChange" name="listNameChange" />
@@ -58,7 +58,7 @@
         <button type="button" class="btn btn-success" aria-label="Left Align" onclick="changeList();">
             <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
         </button>
-        
+
         <button type="button" class="btn btn-danger" aria-label="Left Align" onclick="$('#listChooser').hide();">
             <span class="fa fa-ban" aria-hidden="true"></span>
         </button>
@@ -68,9 +68,9 @@
     <script src="js/DatabaseAPI.js"></script>
     <script src="js/Display.js"></script>
     <script src="js/underscore.string.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-    <script src="http://underscorejs.org/underscore-min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
+    <script src="js/jquery-2.1.1.min.js"></script>
+    <script src="js/underscore-min.js"></script>
+    <script src="js/handlebars-v2.0.0.js"></script>
     <script src="js/Dexie.js"></script>
     <script src="js/index.js"></script>
 

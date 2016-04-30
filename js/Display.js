@@ -16,6 +16,21 @@ function displaySavedResults(arrayObj) {
 }
 
 /**
+ * Displays a menus with all the lists
+ */
+function displayListMenu() {
+        $.get('js/templates/listChooserMenu.html', function (source) {
+        var template = Handlebars.compile(source);
+        var templateData = {
+            items: arrayObj,
+            save: false,
+            remove: true
+        };
+        $(savedList).append(template(templateData));
+    }, 'html')
+}
+
+/**
  * Displays list on Searched Results
  * @param {Object Array} arrayObj - Array of wikipedia json objects
  */

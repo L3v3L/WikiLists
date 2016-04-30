@@ -1,0 +1,26 @@
+{{{{raw-helper}}}}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/main.css">
+{{{{/raw-helper}}}}
+
+<div id="listChooser">
+    <div id="listChooserShortCuts">
+        {{#each this.items}}
+        <input type="button" class="button" value="' + list + '" onclick="changeListButton(\'' + list + '\');" />
+        <br>
+        <br> {{/each}}
+    </div>
+    <div id="listInputChooser">
+        <input type="text" id="listNameChange" name="listNameChange" />
+
+        <button type="button" class="btn btn-success" aria-label="Left Align" onclick="changeList();">
+            <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+        </button>
+
+        <button type="button" class="btn btn-danger" aria-label="Left Align" onclick="$('#listChooser').hide();">
+            <span class="fa fa-ban" aria-hidden="true"></span>
+        </button>
+    </div>
+</div>
+         

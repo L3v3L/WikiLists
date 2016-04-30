@@ -73,7 +73,6 @@ body {
 }
 
 #listChooser{
-        display: none;
         position: absolute;
         top: 25%;
         left: 35%;
@@ -85,6 +84,16 @@ body {
         z-index:1002;
         overflow: auto;
         border-radius: 10px;
+        display: -webkit-flex;
+        display: flex;
+    flex-direction: column;
+}
+
+#listChooserShortCuts{
+    flex: 1;
+}
+#listInputChooser{
+    
 }
 
 .button {
