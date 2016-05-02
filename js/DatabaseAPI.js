@@ -22,3 +22,8 @@ function getAllLists(outPutFunction) {
         outPutFunction(listNameArray);
     });
 }
+
+function clearAllData(){
+    db.wikiInList.clear()
+        .then(refreshView(listSelected));  
+}

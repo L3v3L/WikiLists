@@ -7,7 +7,7 @@ var debug = document.getElementById("debug");
 
 //set default state
 debug.innerHTML = "";
-searchQuery.value = "portogalo";
+searchQuery.value = "";
 listSelected = "General";
 $("#listTitle").text(listSelected);
 
