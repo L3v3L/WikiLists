@@ -8,6 +8,7 @@
     <div id="listChooserShortCuts">
         {{#each this.items}}
         <input type="button" class="button" value="' + list + '" onclick="changeListButton(\'' + list + '\');" />
+        <input type="button" class="button" value="delete" onclick="deleteList(\'' + list + '\');" />
         <br>
         <br> {{/each}}
     </div>

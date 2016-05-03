@@ -27,3 +27,8 @@ function clearAllData(){
     db.wikiInList.clear()
         .then(refreshView(listSelected));  
 }
+
+function deleteList(listName){
+    db.wikiInList.where('listName').equalsIgnoreCase(listName).delete()
+        .then(refreshView(listSelected));
+}
