@@ -184,3 +184,9 @@ a {
 .list h2 {
     text-align: center;
 }
+
+#logo {
+width: 65px;
+margin-right: 10px;
+margin-left: 10px;
+}
